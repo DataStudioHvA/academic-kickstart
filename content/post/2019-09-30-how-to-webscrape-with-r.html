@@ -1,0 +1,136 @@
+---
+title: "How to build a webscraper in R?"
+author: "Youssef El Bouhassani, y.elbouhassani@gmail.com"
+date: "2017-11-22T13:09:13-06:00"
+output: html_document
+---
+
+
+
+<div id="context" class="section level2">
+<h2>Context</h2>
+<p>Webscraping is a handy way to get information from webpages. Websites like <a href="https://www.thefork.nl/" class="uri">https://www.thefork.nl/</a> contain information on indivual restaurants. In this tutorial a simple webscraper will be built that gets the names and ratings of individual restaurants.</p>
+</div>
+<div id="approach" class="section level2">
+<h2>Approach</h2>
+<p>When searching for restaurants, say in Amsterdam, <a href="https://www.thefork.nl/" class="uri">https://www.thefork.nl/</a> returns multiple pages. Each page contains an excerpt information and detailed information if you click on individual restaurants. The pipeline for the scraper looks as follows</p>
+<ol style="list-style-type: decimal">
+<li>From the webpage get urls linking to the individual pages</li>
+<li>From each page url get the urls linking to the individual restaurants</li>
+<li>From the restarant urls get name and rating (and other information if necessary)</li>
+</ol>
+</div>
+<div id="building-the-scraper" class="section level2">
+<h2>Building the scraper</h2>
+<div id="step-0-getting-things-ready" class="section level3">
+<h3>Step 0: getting things ready</h3>
+<div id="selectorgadget" class="section level4">
+<h4>SelectorGadget</h4>
+<p>Websites are built using <code>html</code> and <code>css</code> code. The <code>css</code> code contains information on the tags of the individual elements. To extract information form the website we have to indicate which tages we are looking for. This can be done using the inspect function on the browser. A more handy tool is the SelectorGadget. This is an add on that allows you to easily find the <code>css</code> tags you are looking for. A quick tutorial van be found on <a href="https://vimeo.com/23269072" class="uri">https://vimeo.com/23269072</a>.</p>
+</div>
+<div id="r-libraries" class="section level4">
+<h4>R Libraries</h4>
+<p>To create the scraper we need two important <code>libraries</code>: <code>rvest</code> for webscraping and <code>dplyr</code> for data manipulation. Install and activate libraries</p>
+<p>The <code>rvest</code> package contains a number of function that we will use:</p>
+<ol style="list-style-type: decimal">
+<li><code>read_html()</code>. Gets all <code>html</code> code given a url</li>
+<li><code>html_nodes()</code>. Gets the information associated with the given tag.</li>
+<li><code>html_text()</code>. Converst <code>html</code> code to readable text</li>
+<li><code>html_attr()</code>. Gets the attributes associated with the <code>html</code> code If the underslying attribute is a hyperlink we use <code>html_attr(href)</code> to get the hyperlink.</li>
+</ol>
+<p>These functions can be chaned using the <code>dplyr</code> pipe operator as follows:</p>
+<p><code>url %&gt;% read_html() %&gt;% html_nodes(TagName) %&gt;% html_text()</code></p>
+<p>With <code>TagName</code> being the name of the relevant <code>css</code> tag.</p>
+</div>
+</div>
+<div id="step-1-get-the-website-url" class="section level3">
+<h3>Step 1: Get the website URL</h3>
+<p>We are looking for information on restaurants in Amsterdam. When you search for Amsterdam in <a href="https://www.thefork.nl/" class="uri">https://www.thefork.nl/</a> you get the following URL:</p>
+</div>
+<div id="step-2-get-the-links-to-individual-restaurants" class="section level3">
+<h3>Step 2: Get the links to individual restaurants</h3>
+<p>The URL shows that there are multiple pages which can be navigated using the next and previous button on the bottom of the page. The scraper should recognize the number of pages available. We use the SelectorGadget to find the tag associated with the last page. In this case this tag is <code>#pagination_results li:nth-child(21) a</code>. Based on the the last page index we can create a list of urls for all pages. The structure of a page is as follows:</p>
+<p><code>https://www.thefork.nl/restaurant+amsterdam?page=1</code></p>
+<p>By appending the number of the page to this url, we can create a list of urls for all pages.</p>
+<p>From <code>urllist</code> we can get the urls of the individual restaurants.</p>
+<p>We don’t want to do that page by page, so an <code>lapply</code> function will do the trick. Keep in mind that it might take some time to complete running this function.</p>
+</div>
+<div id="step-3.-get-information-on-individual-restaurants" class="section level3">
+<h3>Step 3. Get information on individual restaurants</h3>
+<p>Now we have a list containing all urls for individual restaurants, we can get the relevant information from these pages. For now we focus on getting the name and the rating of the restaurants.</p>
+<p>The data will be put in a data frame. So first we create an empty data frame with two columns. One for names of restaurants and one for the ratings. Then we loop through all the individual restaurant urls, get <code>html</code> code and the text associated with the <code>css</code> tags for name and rating.</p>
+<p>When selecting the tags keep in mind that we are interested in the average rating mentioned next to the restaurant name. When using the SelectorGadget to select the ratings, the ratings by individuals reviewers are selected as well. So you have to click these away in orther to get the tag of the average rating.</p>
+<p>It is important to keep in mind that information on restaurants might be missing. In this case we have to explicitly state that an <code>NA</code> should be used for missing information using a simple <code>ifelse()</code>. If this is not done, an error message will be given when using the <code>rbind</code> function stating that the data frames have different number of rows.</p>
+</div>
+<div id="possible-issues" class="section level3">
+<h3>Possible issues</h3>
+<p>One of the issues you might encounter is a time out warning. This might have multiple reasons. For instance if the internal signal is down for a brief moment. If this happens after the loop in step 3 is been running for a while, you don’t want to start all over again. You look at the index <code>i</code> to see where the loop stopped and change the starting index in the for loop. So instead of using <code>for(i in 1:length(res_urls))</code> you can use <code>for(i in lastindex + 1:length(res_urls))</code> with <code>lastindex</code> being the value of <code>i</code> at the time when the loop stopped. Make sure you just run the loop without initiating the data frame using <code>df &lt;- data.frame(naam = character(0),rating = numeric(0))</code>. If you do this, the data frame will be cleared and you will have to start all over again.</p>
+</div>
+<div id="complete-code" class="section level3">
+<h3>Complete code</h3>
+<pre class="r"><code>######################### STEP 0: GETTING THINGS READY
+
+# Clean the workspace
+rm(list = ls())
+
+# Activate libraries
+library(rvest)
+library(dplyr)
+
+######################### STEP 1: GET THE WEBSITE URL
+
+# Define website URL
+url &lt;- &quot;https://www.thefork.nl/restaurant+amsterdam&quot;
+
+######################### STEP 2: GET LINKS TO INDIVIDUAL RESTAURANTS
+# Get the number of the last page
+lastpage &lt;- url %&gt;% 
+            read_html() %&gt;% 
+            html_nodes(&quot;#pagination_results a&quot;) %&gt;% 
+            html_text() %&gt;%
+            as.numeric() %&gt;%
+            tail(.,2) %&gt;%
+            head(.,1)
+
+# Create a list of all urls starting from 1 untill the last page
+urllist &lt;- paste(&quot;https://www.thefork.nl/restaurant+amsterdam?page=&quot;,1:lastpage,sep=&quot;&quot;)
+
+# Read html from urllist to get the urls of idividual restaurants
+res_urls &lt;- lapply(urllist,function(x){read_html(x) %&gt;% 
+            html_nodes(&quot;.resultItem-name a&quot;) %&gt;% 
+            html_attr(&quot;href&quot;) %&gt;% 
+            paste(&quot;https://www.thefork.nl&quot;,.,sep=&quot;&quot;)}) %&gt;% 
+            unlist()
+
+######################### STEP 3: GET INFROMATION ON INDIVIDUAL RESTAURANTS
+
+# From the individuals restaurant urls, read the name and the rating
+# Create an empty data frame with the right column names
+df &lt;- data.frame(naam = character(0),rating = numeric(0))
+
+for(i in 1:length(res_urls)) {
+  # Per restraurant read the html code
+  res_html &lt;- res_urls[i] %&gt;% read_html()
+  # Get name
+  naam &lt;- res_html %&gt;% 
+          html_nodes(&quot;.restaurantSummary-name&quot;) %&gt;% 
+          html_text() %&gt;% 
+          as.character() %&gt;% 
+          ifelse(is.null(.),NA,.)
+  
+  # Get rating
+  rating &lt;- res_html %&gt;% 
+            html_nodes(&quot;#restaurantAvgRating .rating-ratingValue&quot;) %&gt;% 
+            html_text() %&gt;% gsub(&quot;,&quot;,&quot;.&quot;,.) %&gt;% 
+            as.numeric() %&gt;% 
+            ifelse(is.null(.),NA,.)
+  
+  # Add the new information to the old dataframe
+  df &lt;- rbind(df,data.frame(naam,rating))
+}
+
+  
+#write to csv
+write.csv(df,&quot;theforkrating.csv&quot;,row.names = F)</code></pre>
+</div>
+</div>
