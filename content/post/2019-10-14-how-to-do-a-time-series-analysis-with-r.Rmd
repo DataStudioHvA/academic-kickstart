@@ -1,11 +1,13 @@
 ---
-title: How to do a Time-Series Analysis with R
-author: Yonas Khanna
+title: "How to do a Time-Series Analysis with R"
+author: "Yonas Khanna"
 date: '2018-12-11'
+output:
+  pdf_document: default
+  html_document: default
 slug: how-to-do-a-time-series-analysis-with-r
-output: html_document
-categories: []
 tags: []
+categories: []
 ---
 
 # Introduction

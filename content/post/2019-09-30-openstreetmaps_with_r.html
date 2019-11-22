@@ -1,8 +1,11 @@
 ---
 title: "How to access OpenStreetMapApi with R"
-author: ""
-date: "2019-10-01T13:09:13-06:00"
-output: html_document
+author: ''
+date: '2019-10-01T13:09:13-06:00'
+output:
+  pdf_document: default
+  html_document: default
+always_allow_html: true
 ---
 
 <script src="/rmarkdown-libs/htmlwidgets/htmlwidgets.js"></script>
@@ -78,7 +81,7 @@ location_eindhoven &lt;- LocationToCoordinates(&quot;Eindhoven&quot;)
 coords &lt;- data.frame(lat = c(location_utrecht[1,1], location_eindhoven[1,1]),lon = c(location_utrecht[1,2], location_eindhoven[1,2]))
 result &lt;- GetWalkingRoute(encodePolyline(coords))
 print(result[[&quot;routes&quot;]][[&quot;distance&quot;]])</code></pre>
-<pre><code>## [1] 89639.7</code></pre>
+<pre><code>## [1] 88675.9</code></pre>
 <div id="mapping-the-route" class="section level3">
 <h3>Mapping the route</h3>
 <p>The result that is returned by the OSRM api call, is able to tell us all the route nodes for finding the the destination the API needs to find.</p>
