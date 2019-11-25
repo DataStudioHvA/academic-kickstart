@@ -23,6 +23,10 @@ output: html_document
 #Introduction
 In this short tech report, we show off how to include interactive charts into your post. We do this by deploying R-Shiny application online and embedding this withing the post. These app's are deployed on https://www.shinyapps.io/, and will be sent to this platform via the library: rsconnect.
 
-<iframe frameborder="no"  src="http://hva-diego.shinyapps.io/shinyapps" style="overflow:hidden;position:relative;width:100%;height:800px;"> </iframe>
+For this post we made use of the [Shiny example: Diamonds Explorer](https://gist.github.com/jcheng5/3239667). The app is built from [2 seperate files](https://shiny.rstudio.com/articles/two-file.html), one file (ui.R) includes the code to define the user interface. The second file (server.R) contains the code to serve the correct data files to the interface. By seperating these dependencies, it makes it easier to handle the code.
+
+Since this post goes beyond the scope of explaining the code in the R files, we will skip that. Underneath you are able to interact with the rShiny application.
+
+<iframe frameborder="no"  src="https://hva-diego.shinyapps.io/shinyapps" style="overflow:hidden;position:relative;width:100%;height:800px;"> </iframe>
 
 
