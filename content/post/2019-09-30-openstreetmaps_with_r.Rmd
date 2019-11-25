@@ -16,7 +16,7 @@ In this techreport we are going to use the open street maps, exploring various A
 
 ## The database of Open Street Maps
 
-Since Google closed its maps API behind a credit card paywall, developers need to migrate to other services. Open Street Maps (OSM) provides some of the functions google maps had for free. In this tech report, we will use the Nominatim API for OpenStreetMap data to help us solve various questions, to get more information about Nominatim see its documentation at the wiki page: https://wiki.openstreetmap.org/wiki/Nominatim. To get an overview of Nominatim makes it able to interrogate its API to retrieve OSM data check: https://nominatim.org/release-docs/develop/api/Overview/. The database of nominatim can also be downloaded be used on servers. Interrogating the API this way, your script can use the data without constraints
+Since Google closed its maps API behind a credit card paywall, developers need to migrate to other services. Open Street Maps (OSM) provides some of the functions google maps had for free. In this tech report, we will use the Nominatim API for OpenStreetMap data to help us solve various questions, to get more information about Nominatim see its documentation at the wiki page: https://wiki.openstreetmap.org/wiki/Nominatim. To get an overview of what how to interrogate its API to retrieve data check: https://nominatim.org/release-docs/develop/api/Overview/. The database of nominatim can also be downloaded and be used on servers. Interrogating the API this way, you have the possibility to do a lot of more API calls, compared to using the given URL.
 
 ```{r}
 # Used libraries
@@ -74,9 +74,11 @@ GetWalkingRoute <- function(encpolied_position) {
   return(d)
 }
 
+
 location_utrecht <- LocationToCoordinates("Utrecht")
 location_eindhoven <- LocationToCoordinates("Eindhoven")
-coords <- data.frame(lat = c(location_utrecht[1,1], location_eindhoven[1,1]),lon = c(location_utrecht[1,2], location_eindhoven[1,2]))
+coords <- data.frame(lat = c(location_utrecht[1,1], location_eindhoven[1,1]),
+                     lon = c(location_utrecht[1,2], location_eindhoven[1,2]))
 result <- GetWalkingRoute(encodePolyline(coords))
 print(result[["routes"]][["distance"]])
 ```

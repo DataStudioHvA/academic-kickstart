@@ -27,7 +27,7 @@ always_allow_html: true
 </div>
 <div id="the-database-of-open-street-maps" class="section level2">
 <h2>The database of Open Street Maps</h2>
-<p>Since Google closed its maps API behind a credit card paywall, developers need to migrate to other services. Open Street Maps (OSM) provides some of the functions google maps had for free. In this tech report, we will use the Nominatim API for OpenStreetMap data to help us solve various questions, to get more information about Nominatim see its documentation at the wiki page: <a href="https://wiki.openstreetmap.org/wiki/Nominatim" class="uri">https://wiki.openstreetmap.org/wiki/Nominatim</a>. To get an overview of Nominatim makes it able to interrogate its API to retrieve OSM data check: <a href="https://nominatim.org/release-docs/develop/api/Overview/" class="uri">https://nominatim.org/release-docs/develop/api/Overview/</a>. The database of nominatim can also be downloaded be used on servers. Interrogating the API this way, your script can use the data without constraints</p>
+<p>Since Google closed its maps API behind a credit card paywall, developers need to migrate to other services. Open Street Maps (OSM) provides some of the functions google maps had for free. In this tech report, we will use the Nominatim API for OpenStreetMap data to help us solve various questions, to get more information about Nominatim see its documentation at the wiki page: <a href="https://wiki.openstreetmap.org/wiki/Nominatim" class="uri">https://wiki.openstreetmap.org/wiki/Nominatim</a>. To get an overview of what how to interrogate its API to retrieve data check: <a href="https://nominatim.org/release-docs/develop/api/Overview/" class="uri">https://nominatim.org/release-docs/develop/api/Overview/</a>. The database of nominatim can also be downloaded and be used on servers. Interrogating the API this way, you have the possibility to do a lot of more API calls, compared to using the given URL.</p>
 <pre class="r"><code># Used libraries
 library(jsonlite)   # Used for calling web API&#39;s and parsin JSON files 
 library(gepaf)      # Encode Coordinates to Google Polylines, used for routing calls
@@ -76,9 +76,11 @@ LocationToCoordinates(&quot;Amsterdam&quot;)</code></pre>
   return(d)
 }
 
+
 location_utrecht &lt;- LocationToCoordinates(&quot;Utrecht&quot;)
 location_eindhoven &lt;- LocationToCoordinates(&quot;Eindhoven&quot;)
-coords &lt;- data.frame(lat = c(location_utrecht[1,1], location_eindhoven[1,1]),lon = c(location_utrecht[1,2], location_eindhoven[1,2]))
+coords &lt;- data.frame(lat = c(location_utrecht[1,1], location_eindhoven[1,1]),
+                     lon = c(location_utrecht[1,2], location_eindhoven[1,2]))
 result &lt;- GetWalkingRoute(encodePolyline(coords))
 print(result[[&quot;routes&quot;]][[&quot;distance&quot;]])</code></pre>
 <pre><code>## [1] 88675.9</code></pre>

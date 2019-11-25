@@ -23,6 +23,6 @@ output: html_document
 #Introduction
 In this short tech report, we show off how to include interactive charts into your post. We do this by deploying R-Shiny application online and embedding this withing the post. These app's are deployed on https://www.shinyapps.io/, and will be sent to this platform via the library: rsconnect.
 
-<iframe frameborder="no"  src="http://hva-diego.shinyapps.io/shinyapps"> </iframe>
+<iframe frameborder="no"  src="http://hva-diego.shinyapps.io/shinyapps" style="overflow:hidden;position:relative;width:100%;height:800px;"> </iframe>
 
 
