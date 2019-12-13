@@ -1,0 +1,107 @@
+---
+title: 'How to: gebruik maken van open street maps API''s'
+author: Diego Staphorst
+date: '2019-10-01'
+slug: 191001_openstreetmaps
+categories:
+  - how to
+  - maps
+  - rmarkdown
+tags:
+  - r
+  - website
+subtitle: ''
+summary: ''
+authors: []
+lastmod: '2019-12-13T15:14:31+01:00'
+featured: no
+image:
+  caption: ''
+  focal_point: ''
+  preview_only: no
+projects: []
+output: pdf_document
+always_allow_html: true
+---
+## Introduction
+In this techreport we are going to use the open street maps, exploring various API calls possible with the platform. We do this by 
+
+## The database of Open Street Maps
+
+Since Google closed its maps API behind a credit card paywall, developers need to migrate to other services. Open Street Maps (OSM) provides some of the functions google maps had for free. In this tech report, we will use the Nominatim API for OpenStreetMap data to help us solve various questions, to get more information about Nominatim see its documentation at the wiki page: https://wiki.openstreetmap.org/wiki/Nominatim. To get an overview of what how to interrogate its API to retrieve data check: https://nominatim.org/release-docs/develop/api/Overview/. The database of nominatim can also be downloaded and be used on servers. Interrogating the API this way, you have the possibility to do a lot of more API calls, compared to using the given URL.
+
+```{r}
+# Used libraries
+library(jsonlite)   # Used for calling web API's and parsin JSON files 
+library(gepaf)      # Encode Coordinates to Google Polylines, used for routing calls
+library(leaflet)
+```
+
+
+
+```{r}
+# First we will define some the URL base for some of the API operations
+reverse_url = "https://nominatim.openstreetmap.org/reverse?format=jsonv2&"
+search_url = "https://nominatim.openstreetmap.org/search.php?format=jsonv2&q="
+routing_url = "http://router.project-osrm.org/route/v1/driving/polyline("
+```
+
+## Retrieving data from coordinates
+In this function, we will interrogate the Nominatim API to retrieve location data according to the longitudinal and latitudinal points given. lon=4.8945 and lat=52.3667, the coordinates for some random place in Amsterdam.
+```{r}
+CoordinatesToLocation <- function(lon = NULL,lat=NULL) {
+  url <- paste0(reverse_url,"&lat=",lat,"&lon=",lon)
+  system.time({
+    d <- fromJSON(url)
+  })
+  return(d)
+}
+CoordinatesToLocation(4.8945, 52.3667)$display_name
+
+```
+For this tech report, we have only chosen to show the `$display\_name$` attribute from the returned data frame `$d$`. This indicates anything was found while querying the Nominatim API. There resides much more data available of use in the complete frame.
+
+## Retrieving data from location
+We can also send a search query to OSM, to retrieve location data according to the location information we have. The API will return a data frame with various found places sorted according to importance. We return the first found result which OSM has determined to be determined.
+```{r}
+LocationToCoordinates <- function(location) {
+  url <- paste0(search_url, location)
+  system.time({
+    d <- fromJSON(url)[1,]
+  })
+  return (data.frame(as.numeric(as.character(d['lat'])), as.numeric(as.character(d['lon']))))
+}
+LocationToCoordinates("Amsterdam")
+
+```
+## Car route between locations
+To find the distance between multiple locations we use another API, in this case we use the API call from  Open Source Routing Machine (OSRM), another API service working with the data from the OpenStreetMap project. Another library that is used `$gepaf$`, which is an encoder to encode coordinates into Google's Encoded Polyline Format.
+
+```{r}
+GetWalkingRoute <- function(encpolied_position) {
+  url <- paste0(routing_url,encpolied_position,")")
+  system.time({
+    d <- fromJSON(url)
+  })
+  return(d)
+}
+
+
+location_utrecht <- LocationToCoordinates("Utrecht")
+location_eindhoven <- LocationToCoordinates("Eindhoven")
+coords <- data.frame(lat = c(location_utrecht[1,1], location_eindhoven[1,1]),
+                     lon = c(location_utrecht[1,2], location_eindhoven[1,2]))
+result <- GetWalkingRoute(encodePolyline(coords))
+print(result[["routes"]][["distance"]])
+```
+### Mapping the route
+The result that is returned by the OSRM api call, is able to tell us all the route nodes for finding the the destination the API needs to find. 
+```{r}
+route_df <- decodePolyline(result[["routes"]][["geometry"]])
+
+leaflet(route_df) %>% 
+  addTiles() %>%
+  addProviderTiles(providers$CartoDB.Positron) %>%
+  addCircles(lng = ~lon, lat = ~lat, weight = 2, fillOpacity = 0.5,
+             radius = 10)
+```

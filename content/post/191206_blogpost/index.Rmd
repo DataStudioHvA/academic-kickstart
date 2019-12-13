@@ -1,0 +1,69 @@
+---
+title: 'How to: Het maken van een blogpost'
+author: Diego Staphorst
+date: '2019-12-06'
+slug: 191206_blogpost
+categories:
+  - how to
+  - rmarkdown
+tags:
+  - website
+  - r
+subtitle: ''
+summary: ''
+authors: []
+lastmod: '2019-12-06T14:45:50+01:00'
+featured: no
+image:
+  caption: ''
+  focal_point: ''
+  preview_only: no
+projects: []
+output: pdf_document
+---
+
+<!-- https://mikeyharper.uk/migrating-to-blogdown/ -->
+<!-- https://yutani.rbind.io/post/2017-10-25-blogdown-custom/ -->
+<!-- https://alison.rbind.io/post/2019-02-21-hugo-page-bundles/ -->
+
+# Introductie
+De voornaamste intentie van deze website is het delen van onze kennis en het open source houden van onze kennis. Dit willen wij bereiken door tech reports te schrijven, hiermee gaan wij onze processen en resultaten van projecten beschrijven. Door het creeeren van deze post willen wij anderen (werknemers & studenten) de mogelijkheid bieden om te kunnen bijdragen aan deze website, door in eerste instantie tech reports te maken over nieuwe tools en/of technieken gebruikt voor het oplossen van verschillende vragen.
+
+## Wat voor tools worden gebruikt?
+<!-- De website wordt gebouwd met een R package, genaamd blogdown. Hiermee kan je websites maken die gebruikt maken van RMarkdown en Hugo voornamelijk om de volgende redenen: -->
+
+<!-- * Er zit geen content management systeem achter, dit houd in dat alle gerenderde paginas voor de website  direct te benaderen zijn via Github. Updates aan de websites gebeueren ook via Github, zo kan er een community ontstaan waarbij meerdere personen verantwoordelijk zijn voor de website. -->
+
+<!-- * De website wordt onder andere gegenereerd vanuit RMarkdown bestanden, dit brengt veel voordelen met zich mee, zoals dat het direct gerelateerd is aan data analyse. Via deze methods kan er in een blogpost direct R code worden verwerkt, om bijvoorbeeld je data pre-processing, visualisatie en conclusies in te weergeven. -->
+
+Doordat er voornamelijk in R wordt gewerkt is het handig om gebruik te maken van RStudio, omdat het gemaakt is om de gebruiker productiever te maken. Je zou ook gebruik kunnen maken van je favoriete code editor, maar dit wordt afgeraden.
+
+[Installeer RStudio hier](https://rstudio.com/products/rstudio/download/), volg de stappen op de website!
+
+# Hoe kun je bijdragen
+Er zijn verschillende manieren om te helpen aan de website, in deze blogpost focussen we ons op het maken van blogposts. Een voorwaarde is dat je een github account hebt, een basisbegip van git en github hebt. Hieronder staan een aantal resources, om je kennis qua git en github op te frissen!
+
+* [Github.com](https://github.com)
+* [Github guides](https://guides.github.com/)
+
+Git kan op verschillende manieren worden gebruikt, zo kan je dat doen via de terminal, maar ook via een Graphical User Interface (GUI). Zelf gebruik ik [GitKraken](https://www.gitkraken.com/), het geeft een duidelijk overzicht wat er gebeurt in de repository.  Zij bieden ook trainingen aan die de flow van github intuitiever maken, [Learn Git with Gitkraken](https://www.gitkraken.com/learn-git).
+
+Nu zou je je eerste bijdragen moeten kunnen maken aan dit project! Laten we beginnen hiermee, door deze [video](https://www.youtube.com/watch?v=j_qpzND5yAg) te bekijken. Een samenvatting van de stappen staan hieronder:
+
+1. Vork de repository en kloon hem naar je desktop
+2. Maak een branch voor je blogpost
+3. Pas de bestanden aan/Maak je post (hoe dit moet staat in het kopje hieronder)
+4. Commit naar veranderingen naar je gemaakte branch
+5. Maak een nieuwe pull request
+6. Wacht op review van je pull request
+
+
+
+Deze stappen staan uitvoerig beschreven in de volgende link [beginners guide to contributing](https://akrabat.com/the-beginners-guide-to-contributing-to-a-github-project/).
+
+## Je eerste post maken
+Als stap 1 en 2 hebt uitgevoerd op je eigen desktop, gaan we beginnen met het maken van een blogpost.
+
+1. Open het R project in 
+
+[Download tech report](report.pdf)
