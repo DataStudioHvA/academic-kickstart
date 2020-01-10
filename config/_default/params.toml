@@ -9,7 +9,7 @@
 #   Latest themes (may require updating): https://sourcethemes.com/academic/themes/
 #   Browse built-in themes in `themes/academic/data/themes/`
 #   Browse user installed themes in `data/themes/`
-theme = "minimal"
+theme = "datastudio"
 
 # Enable users to switch between day and night mode?
 day_night = true
@@ -19,6 +19,8 @@ day_night = true
 #   Browse built-in font sets in `themes/academic/data/fonts/`
 #   Browse user installed font sets in `data/fonts/`
 font = ""
+
+
 
 # Choose a font size.
 # Sizes: XS (extra small), S (small), M (medium), L (large - DEFAULT), XL (extra large)
@@ -33,7 +35,7 @@ font_size = "L"
 #   For personal sites, choose "Person".
 #   For organizations and projects, choose from https://schema.org/Organization#subtypes
 #   E.g. Person, Organization, LocalBusiness, Project, EducationalOrganization
-site_type = "EducationalOrganization"
+site_type = "Organization"
 
 # Local business type (optional)
 # If you entered "LocalBusiness" above, choose the type of business from https://schema.org/LocalBusiness#subtypes
@@ -41,14 +43,14 @@ local_business_type = ""
 
 # Organization name (optional)
 # Enter an organization or project name. Defaults to the site title from `config.toml`.
-org_name = "Datastudio Amsterdam"
+org_name = "Data Studio"
 
 # Description for social sharing and search engines. If undefined, superuser role is used in place.
-description = ""
+description = "Data studio's portaal voor tech reports."
 
 # Display a logo in navigation bar rather than title (optional).
 #   To enable, place an image in `static/img/` and reference its filename below. To disable, set the value to "".
-logo = ""
+logo = "logo-lines.png"
 
 ############################
 ## Site Features
@@ -57,12 +59,12 @@ logo = ""
 # Enable source code highlighting? true/false
 # Documentation: https://sourcethemes.com/academic/docs/writing-markdown-latex/#highlighting-options
 highlight = true
-highlight_languages = ["r", "python"]  # Add support for highlighting additional languages
+highlight_languages = ["r"]  # Add support for highlighting additional languages
 # highlight_style = "github"  # For supported styles, see https://cdnjs.com/libraries/highlight.js/
 
 # Enable LaTeX math rendering? true/false
 #   If false, you can enable math on a per page basis as needed.
-math = false
+math = true
 
 # Enable diagram rendering? true/false
 #   If false, you can enable diagrams on a per page basis as needed.
@@ -75,7 +77,8 @@ privacy_pack = false
 
 # Enable visitors to edit pages?
 #   `repo` defines the repository URL. `editable` defines which page types can be edited.
-edit_page = {repo_url = "https://github.com/gcushen/hugo-academic", repo_branch = "master", editable = {docs = true, page = false, post = false}}
+edit_page = {repo_url = "https://github.com/DataStudioHvA/blog_tech_reports", content_dir = "", repo_branch = "master", editable = {docs = false, page = false, post = true}}
+
 
 ############################
 ## Contact details
@@ -85,26 +88,26 @@ edit_page = {repo_url = "https://github.com/gcushen/hugo-academic", repo_branch 
 ############################
 
 # Enter contact details (optional). To hide a field, clear it to "".
-email = "datastudio@hva.nl"
-phone = "+31 628488190"
+email = ""
+phone = ""
 
 # Address
 # For country_code, use the 2-letter ISO code (see https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2 )
-address = {street = "Weesperzijde 190", city = "Amsterdam", region = "Noord-Holland", postcode = "1097DZ", country = "The Netherlands", country_code = "NL"}
+address = {street = "450 Serra Mall", city = "Stanford", region = "CA", postcode = "94305", country = "United States", country_code = "US"}
 
 # Geographic coordinates
 # To get your coordinates, right-click on Google Maps and choose "What's here?". The coords will show up at the bottom.
-coordinates = {latitude = "52.345741", longitude = "4.9140473"}
+coordinates = {latitude = "37.4275", longitude = "-122.1697"}
 
 # Directions for visitors to locate you.
-# directions = "Enter Building 1 and take the stairs to Office 200 on Floor 2"
+directions = "Enter Building 1 and take the stairs to Office 200 on Floor 2"
 
 # Office hours
 # A list of your office hours. To remove, set to an empty list `[]`.
-office_hours = []
+office_hours = ["Monday 10:00 to 13:00", "Wednesday 09:00 to 10:00"]
 
 # Enter an optional link for booking appointments (e.g. calendly.com).
-appointment_url = ""
+appointment_url = "https://calendly.com"
 
 # Contact links
 #   Set to `[]` to disable, or comment out unwanted lines with a hash `#`.
@@ -134,11 +137,10 @@ twitter = ""
 #   Examples: "Mon, Jan 2, 2006" or "2006-01-02"
 date_format = "Jan 2, 2006"
 #   Examples: "3:04 pm" or "15:04"
-time_format = "15:04"
+time_format = "3:04 PM"
 
-# List delimiter (separates parts of an address)
-# Popular separators are ", " (comma), "<br>" (new line), " " (space)
-list_delimiter = ", "
+# Address format (choose from the [address_formats] list below or add you own to the list).
+address_format = "en-us"
 
 ############################
 ## Advanced
@@ -147,8 +149,8 @@ list_delimiter = ", "
 # Get user avatars from Gravatar.com? (true/false)
 gravatar = false
 
-# Align the main menu to the right of the page? (true/false)
-menu_align_right = false
+# Main menu alignment (l = left, c = center, r = right) and logo options.
+main_menu = {align = "l", show_logo = true}
 
 # Show estimated reading time for posts? (true/false)
 reading_time = true
@@ -166,6 +168,14 @@ link_authors = true
 # Load JS plugins
 #   E.g. To load `/assets/js/custom.js`, set `plugins_js = ["custom"]`.
 plugins_js  = []
+
+# Available address formats.
+[address_formats]
+  en-us = {order = ['street', 'city', 'region', 'postcode'], delimiters = [', ', ', ', ' ', '']}
+  en-gb = {order = ['street', 'city', 'region', 'postcode'], delimiters = [', ', ', ', ', ', '']}
+  de = {order = ['street', 'postcode', 'city'], delimiters = [', ', ' ', '']}
+  fr-fr = {order = ['street', 'postcode', 'city'], delimiters = ['<br>', ' ', '']}
+  zh = {order = ['postcode', 'region', 'city', 'street'], delimiters = [' ', ' ', ' ', '']}
 
 # Configuration of publication pages.
 [publications]
@@ -241,9 +251,10 @@ plugins_js  = []
   #   1: Google Maps
   #   2: OpenStreetMap (Mapnik)
   #   3: OpenStreetMap (Mapbox)
-  engine = 2
+  engine = 0
   api_key = ""
   zoom = 15
+
 
 ############################
 ## Marketing
