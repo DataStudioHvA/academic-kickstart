@@ -20,6 +20,8 @@ image:
   preview_only: no
 projects: []
 output: pdf_document
+params:
+  filepath: "/post/191206_blogpost/"
 ---
 
 <!-- https://mikeyharper.uk/migrating-to-blogdown/ -->
@@ -66,4 +68,4 @@ Als stap 1 en 2 hebt uitgevoerd op je eigen desktop, gaan we beginnen met het ma
 
 1. Open het R project in 
 
-[Download tech report](report.pdf)
+[Download tech report](index.Rmd)
