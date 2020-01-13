@@ -1,15 +1,15 @@
 # Tech-reportsportaal Data Studio
 
-Urban Analytics is the oprichter en ontwikkelaar van de Data Studio, een omgeving waar onderzoekers, leraren en studenten samenwerken met bedrijven en overheden. Zij doen dit door het activeren van geinterreseeerden, door data en kennis samen te brengen, door middel van meet-ups, maar ook door het samen werken tijdens project in het veld van data science.
+Urban Analytics is de oprichter en ontwikkelaar van de Data Studio, een omgeving waar onderzoekers, leraren en studenten samenwerken met bedrijven en overheden. Dit gebeurt door het activeren van geïnterreseerden, door data en kennis samen te brengen, door middel van meet-ups, maar ook door het samen werken tijdens project in het veld van data science.
 
-Het publiceren van tech reports is een van onze methoden om te verbinden met het publiek. Dit doen we door onze onderzoek te delen met bedrijven en overheden. Deze rapporten gaan over gerichtte metingen die wij uitvoeren tot aan data analyses, maar ook data visualisatie en het ontwikkelen van software applicaties. 
+Het publiceren van tech reports is één van onze methoden om te verbinden met het publiek door ons onderzoek te delen met bedrijven en overheden. Deze rapporten gaan over gerichtte metingen die wij uitvoeren tot aan data analyses, maar ook data visualisaties en het ontwikkelen van software applicaties. 
 
 ## Hoe kan je bijdragen?
-Er zijn verschillende manieren waarop kan worden bijgedragen aan de website. Deze kunnen allemaal gebeuren in Github, maar het kan ook handig zijn om RStudio te hebben. Met RStudio kan je helpen met het publiceren van tech reports, dit gebeurt door middel van RMarkdown.
+Er zijn verschillende manieren waarop kan worden bijgedragen aan de website. Alles gebeurt via Github, maar het kan ook handig zijn om RStudio te hebben. Via RStudio kan je namelijk eenvoudig tech reports maken met behulp van R-Markdown.
 
-Als je fouten ziet in een tech report zou je dat ook kunnen aanpassen en door middel van een pull request met veranderingen kunt doorgeven aan de beheerders van deze repository.
+Als je fouten ziet in een tech report zou je dat door middel van een pull request met veranderingen kunnen doorgeven aan de beheerders van deze repository.
 
-In de toekomst zullen er ook beschrijvingen uitkomen in de vorm van tech reports die zullen uitleggen hoe je je eigen tech report kunt schrijven!
+In de toekomst zal er ook een beschrijving worden gepubliceerd in de vorm van een tech report die zal uitleggen hoe je je eigen tech report kunt schrijven!
 
 ## Directories
 .
