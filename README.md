@@ -1,4 +1,4 @@
-# Tech reports portaal Data Studio
+# Tech-reportsportaal Data Studio
 
 Urban Analytics is the oprichter en ontwikkelaar van de Data Studio, een omgeving waar onderzoekers, leraren en studenten samenwerken met bedrijven en overheden. Zij doen dit door het activeren van geinterreseeerden, door data en kennis samen te brengen, door middel van meet-ups, maar ook door het samen werken tijdens project in het veld van data science.
 
