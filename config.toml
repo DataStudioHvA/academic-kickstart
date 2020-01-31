@@ -1,4 +1,4 @@
 theme = "academic"
-baseURL = "http://example.org/"
+baseURL = "http://datastudio.netlify.com/"
 languageCode = "nl"
 title = "Data Studio's portaal voor tech reports"

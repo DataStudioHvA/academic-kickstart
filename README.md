@@ -11,22 +11,24 @@ Als je fouten ziet in een tech report zou je dat door middel van een pull reques
 
 In de toekomst zal er ook een beschrijving worden gepubliceerd in de vorm van een tech report die zal uitleggen hoe je je eigen tech report kunt schrijven!
 
+[Zie hier hoe je tech reports kan toevoegen!](https://github.com/DataStudioHvA/blog_tech_reports/tree/master/content/post)
+
 ## Directories
 .
- ├── R                       # R scripts die uitgevoerd worden voor het renderen  
- ├── config                  # Configuratie bestanden Academic theme  
- ├── content                 # Verschillende formats om content te weergeven   
- ├── data                    # Hierin staan onze aanpassingen aan de thema  
- ├── layouts                 # Hierin staan aangepaste partials voor de thema  
- ├── resources               # Gegenereerde bestaanden door HUGO  
- ├── static                  # Static bestanden voor de websites, zoals plaatjes  
- ├── themes                  # Verschillende thema's die gekozen kunenn worden  
- ├── LICENSE.md              # License voor het gebruiken van deze code  
- ├── README.md               # Beschrijving van de repository  
- ├── config.toml             # Config bestand voor website  
- ├── netlify.toml            # Config bestand voor CI op Netlify  
- ├── update_academic.sh      # Update bestand academic thema  
- └── view.sh                 # Config bestand voor netlify  
+├── R                       # R scripts die uitgevoerd worden voor het renderen  
+├── config                  # Configuratie bestanden Academic theme  
+├── content                 # Verschillende formats om content te weergeven   
+├── data                    # Hierin staan onze aanpassingen aan de thema  
+├── layouts                 # Hierin staan aangepaste partials voor de thema  
+├── resources               # Gegenereerde bestaanden door HUGO  
+├── static                  # Static bestanden voor de websites, zoals plaatjes  
+├── themes                  # Verschillende thema's die gekozen kunenn worden  
+├── LICENSE.md              # License voor het gebruiken van deze code  
+├── README.md               # Beschrijving van de repository  
+├── config.toml             # Config bestand voor website  
+├── netlify.toml            # Config bestand voor CI op Netlify  
+├── update_academic.sh      # Update bestand academic thema  
+└── view.sh                 # Config bestand voor netlify  
 
 
 ## Technologieen
