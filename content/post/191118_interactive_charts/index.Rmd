@@ -21,6 +21,7 @@ output: pdf_document
 
 ---
 #Introduction
+In dit korte tech report laten we zien hoe je interactieve charts kan plaatsen in je post. 
 In this short tech report, we show off how to include interactive charts into your post. We do this by deploying R-Shiny application online and embedding this withing the post. These app's are deployed on https://www.shinyapps.io/, and will be sent to this platform via the library: rsconnect.
 
 For this post we made use of the [Shiny example: Diamonds Explorer](https://gist.github.com/jcheng5/3239667). The app is built from [2 seperate files](https://shiny.rstudio.com/articles/two-file.html), one file (ui.R) includes the code to define the user interface. The second file (server.R) contains the code to serve the correct data files to the interface. By seperating these dependencies, it makes it easier to handle the code.
