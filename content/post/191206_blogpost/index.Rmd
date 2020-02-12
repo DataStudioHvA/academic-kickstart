@@ -28,21 +28,45 @@ params:
 <!-- https://yutani.rbind.io/post/2017-10-25-blogdown-custom/ -->
 <!-- https://alison.rbind.io/post/2019-02-21-hugo-page-bundles/ -->
 
-# Introductie
-De voornaamste intentie van deze website is het delen van onze kennis en het open source houden van onze kennis. Dit willen wij bereiken door tech reports te schrijven, hiermee gaan wij onze processen en resultaten van projecten beschrijven. Door het creeeren van deze post willen wij anderen (werknemers & studenten) de mogelijkheid bieden om te kunnen bijdragen aan deze website, door in eerste instantie tech reports te maken over nieuwe tools en/of technieken gebruikt voor het oplossen van verschillende vragen.
+# Het schrijven van tech reports
+In deze markdown ga ik verschillende methoden beschrijven hoe er tech reports kunnen worden geplaats op de website. Dit gebeurt voornamelijk met Rmarkdown, dit is een bestands formaat, waarmee R code met zijn output kan wornen weergegeven. Zo kunnen bijvoorbeeld stukken code ook worden meegenomen in de uiteindelijke output van het document. Het is ook mogelijk om jupyter notebook als tech reports aan te maken, dit zal in een update worden beschreven.
 
-## Wat voor tools worden gebruikt?
-<!-- De website wordt gebouwd met een R package, genaamd blogdown. Hiermee kan je websites maken die gebruikt maken van RMarkdown en Hugo voornamelijk om de volgende redenen: -->
+## Een nieuwe post maken
+Het maken van een tech report kan heel gemakkelijk, in de volgende serie plaatjes wordt dit weergegeven.
 
-<!-- * Er zit geen content management systeem achter, dit houd in dat alle gerenderde paginas voor de website  direct te benaderen zijn via Github. Updates aan de websites gebeueren ook via Github, zo kan er een community ontstaan waarbij meerdere personen verantwoordelijk zijn voor de website. -->
+De volgende afbeelding is een screenshot van RStudio, dus we nemen hierbij aan dat je [R](https://www.r-project.org) en [Rstudio](https://www.rstudio.com) geinstalleerd hebt.
 
-<!-- * De website wordt onder andere gegenereerd vanuit RMarkdown bestanden, dit brengt veel voordelen met zich mee, zoals dat het direct gerelateerd is aan data analyse. Via deze methods kan er in een blogpost direct R code worden verwerkt, om bijvoorbeeld je data pre-processing, visualisatie en conclusies in te weergeven. -->
+Installeer blogdown, door de volgende regel in je console te plakken.
 
-Doordat er voornamelijk in R wordt gewerkt is het handig om gebruik te maken van RStudio, omdat het gemaakt is om de gebruiker productiever te maken. Je zou ook gebruik kunnen maken van je favoriete code editor, maar dit wordt afgeraden.
+```r
+## Install from CRAN
+install.packages("blogdown")
+```
 
-[Installeer RStudio hier](https://rstudio.com/products/rstudio/download/), volg de stappen op de website!
+Je moet ook de static website generator Hugo installeren, plak de volgende regel in de console:
 
-# Hoe kun je bijdragen
+```r
+blogdown::install_hugo()
+```
+
+
+### Openen nieuwe post
+![Figure 1: aanmaken ](../static/nieuwe_post1.png)
+
+### Gegevens instellen
+In de volgende afbeelding zie je hoe jij je specifieke gegevens moet instellen als je een nieuwe post wilt genereren. Volg de stappen die in de afbeelding staan weergeven
+
+![test](../static/nieuwe_post2.png)
+
+### Je post op github plaatsen via de website
+Door een nieuwe folder aan te maken via de github website zou de workflow simpeler kunnen zijn. Met deze methode zou je niet de gehele repository van de website hoeven te downloaden. Via RStudio zou je dan je tech report kunnen schrijven, test en editten totdat het een rapport is die publiceerbaar is.
+
+![test](../static/nieuwe_post.png)
+Hierna kan je beginnen met het typen van de blogpost.
+
+### Je post op github plaatsen via gitkraken
+Door gebruik te maken van RStudio en jouw favoriete method om connectie te maken met deze github repository, zou je je workflow kunnen bevorderen. Hieronder staat een korte beschrijving hoe dat in zijn werk zou gaan.
+
 Er zijn verschillende manieren om te helpen aan de website, in deze blogpost focussen we ons op het maken van blogposts. Een voorwaarde is dat je een github account hebt, een basisbegip van git en github hebt. Hieronder staan een aantal resources, om je kennis qua git en github op te frissen!
 
 * [Github.com](https://github.com)
@@ -54,18 +78,10 @@ Nu zou je je eerste bijdragen moeten kunnen maken aan dit project! Laten we begi
 
 1. Vork de repository en kloon hem naar je desktop
 2. Maak een branch voor je blogpost
-3. Pas de bestanden aan/Maak je post (hoe dit moet staat in het kopje hieronder)
+3. Pas de bestanden aan/Maak je post (hoe dit moet staat hierboven)
 4. Commit naar veranderingen naar je gemaakte branch
 5. Maak een nieuwe pull request
 6. Wacht op review van je pull request
 
-
-
 Deze stappen staan uitvoerig beschreven in de volgende link [beginners guide to contributing](https://akrabat.com/the-beginners-guide-to-contributing-to-a-github-project/).
 
-## Je eerste post maken
-Als stap 1 en 2 hebt uitgevoerd op je eigen desktop, gaan we beginnen met het maken van een blogpost.
-
-1. Open het R project in 
-
-[Download tech report](index.Rmd)
