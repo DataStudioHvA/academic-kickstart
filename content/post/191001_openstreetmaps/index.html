@@ -1,0 +1,124 @@
+---
+title: 'How to: gebruik maken van open street maps API''s'
+author: Diego Staphorst
+date: '2019-10-01'
+slug: 191001_openstreetmaps
+categories:
+  - how to
+  - maps
+tags:
+  - r
+  - website
+subtitle: ''
+summary: ''
+authors: []
+lastmod: '2019-12-13T15:14:31+01:00'
+featured: no
+image:
+  caption: ''
+  focal_point: ''
+  preview_only: no
+projects: []
+output: pdf_document
+always_allow_html: true
+---
+
+<script src="/rmarkdown-libs/htmlwidgets/htmlwidgets.js"></script>
+<script src="/rmarkdown-libs/jquery/jquery.min.js"></script>
+<link href="/rmarkdown-libs/leaflet/leaflet.css" rel="stylesheet" />
+<script src="/rmarkdown-libs/leaflet/leaflet.js"></script>
+<link href="/rmarkdown-libs/leafletfix/leafletfix.css" rel="stylesheet" />
+<script src="/rmarkdown-libs/Proj4Leaflet/proj4-compressed.js"></script>
+<script src="/rmarkdown-libs/Proj4Leaflet/proj4leaflet.js"></script>
+<link href="/rmarkdown-libs/rstudio_leaflet/rstudio_leaflet.css" rel="stylesheet" />
+<script src="/rmarkdown-libs/leaflet-binding/leaflet.js"></script>
+<script src="/rmarkdown-libs/leaflet-providers/leaflet-providers.js"></script>
+<script src="/rmarkdown-libs/leaflet-providers-plugin/leaflet-providers-plugin.js"></script>
+
+
+<div id="introduction" class="section level1">
+<h1>Introduction</h1>
+<p>In dit tech report gaan we gebruik maken van de <a href="https://wiki.openstreetmap.org/wiki/API">Open street maps API</a>, en zullen we verschillende API calls verkennen die mogelijk zijn voor het platform.</p>
+<div id="wat-zijn-api-calls" class="section level2">
+<h2>Wat zijn API calls</h2>
+<p>Een RESTful API is een methode voor het beschikbaarstellen van communicatie tussen een computer die aangesloten is op het internet en een server die zijn data beschikbaar stelt. Op Wikipedia kan je meer informatie over deze methoden vinden maar we gaan er in dit tech report niet veel verder op in dan dat we er gebruik van maken voor het gebruiken als introductie hoe jij het zou kunnen gebruiken.</p>
+<p>Het aanroepen “calls” van API kan verschillende bestands formated terugsturen waaronder: HTTP, URI, JSON, or XML. OpenStreetMaps stuurt JSON terug. Afhankelijk van de API, zou je dus andere libraries moeten gebruiken voor het parsen van jou data.</p>
+</div>
+<div id="de-database-van-open-street-maps" class="section level2">
+<h2>De database van Open Street Maps</h2>
+<p>Sinds dat Google zijn maps API heeft verscholen achter een credit card betalingen voor vrijgebruik, moeten we naar andere methoden zoeken om vergelijkbare data ergens op te kunnen halen. Open Street maps biedt zijn data open aan, en er kan dus vrij gebruik van worden gemaakt zolang je er naar refereert. <a href="https://nominatim.org/release-docs/latest/api/Overview/">Nominatim API</a> is een van de providers van de Open Street Maps data, bekijk de links voor verschillende API calls die je kan maken.</p>
+<p>Je kan de data ook als geheel downloaden, dit heeft zijn voordelen. Zo kan je onbeperkt calls maken naar de API, providers die het online aanbieden willen dit namelijk wel is limiteren, door een paywall of door het maximale aantal calls in een bepaald tijdsbestek limiteren. Je hebt dan wel de ruimte nodig, omdit ergens te kunnen plaatsen. Bij Urban Analytics gebruiken we link: <a href="http://prdurbana0001.ict.hva.nl/nominatim/reverse?format=jsonv2" class="uri">http://prdurbana0001.ict.hva.nl/nominatim/reverse?format=jsonv2</a></p>
+<p>Stel dat je beschikbaarheid hier tot hebt, maak hier dan gebruik van tijdens het maken van je calls!</p>
+<pre class="r"><code># Gebruikte libraries
+library(jsonlite)   # Wordt gebruikt voor het maken van API calls en parsen JSON 
+library(gepaf)      # Coordinaten parsen in Google Polylines
+library(leaflet)    # Interactieve mappen voor het weergeven van maps data</code></pre>
+<pre class="r"><code># URL link voor het maken van API calls
+reverse_url = &quot;https://nominatim.openstreetmap.org/reverse?format=jsonv2&amp;&quot;
+search_url = &quot;https://nominatim.openstreetmap.org/search.php?format=jsonv2&amp;q=&quot;
+routing_url = &quot;http://router.project-osrm.org/route/v1/driving/polyline(&quot;</code></pre>
+</div>
+<div id="ophalen-data-via-de-coordinaten" class="section level2">
+<h2>Ophalen data via de coordinaten</h2>
+<p>Stel je wilt weten welke plaats hoort van bepaalde locatie coordinaten die je tot je beschikking hebt. We zullen hiervoor gebruik maken van de Nominatim API om data op te halen van een willekeurige plek in Amsterdam</p>
+<pre class="r"><code>CoordinatesToLocation &lt;- function(lon = NULL,lat=NULL) {
+  url &lt;- paste0(reverse_url,&quot;&amp;lat=&quot;,lat,&quot;&amp;lon=&quot;,lon)
+  system.time({
+    d &lt;- fromJSON(url)
+  })
+  return(d)
+}
+CoordinatesToLocation(4.8945, 52.3667)$display_name</code></pre>
+<pre><code>## [1] &quot;McDonald&#39;s, , Grachtengordel, Amsterdam, Noord-Holland, Nederland, 1017CK, Nederland&quot;</code></pre>
+<p>We weergeven nu alleen het <code>display\_name</code> attribuut van de data die we hebben terug gekregen. Maar in de volledige set aan data zit veel meer, afhankelijk van wat je nodig hebt zou je hierin moeten kijken.</p>
+</div>
+<div id="ophalen-coordinaten-via-een-locatie" class="section level2">
+<h2>Ophalen coordinaten via een locatie</h2>
+<p>We kunnen dit ook andersom doen, stel je hebt de coordinaten nodig van een specifieke locatie. Hiervoor maken we gebruik van de <code>search_url</code>, dit geeft een lijst terug met gevonden plaatsen gesorteerd op meest waarschijnlijk. Hiervan pakken we van het eerste resultaat de coordinaten, nogmaals afhankelijk van je nodig hebt zou je je resultaat kunnen aanpassen.</p>
+<pre class="r"><code>LocationToCoordinates &lt;- function(location) {
+  url &lt;- paste0(search_url, location)
+  system.time({
+    d &lt;- fromJSON(url)[1,]
+  })
+  return (data.frame(as.numeric(as.character(d[&#39;lat&#39;])), as.numeric(as.character(d[&#39;lon&#39;]))))
+}
+LocationToCoordinates(&quot;Amsterdam&quot;)</code></pre>
+<pre><code>##   as.numeric.as.character.d..lat.... as.numeric.as.character.d..lon....
+## 1                           52.37454                           4.897976</code></pre>
+</div>
+<div id="auto-route-tussen-locaties" class="section level2">
+<h2>Auto route tussen locaties</h2>
+<p>In dit voorbeeld gebruiken we de function <code>LocationToCoordinates</code> om de coordinaten te bepalen van Utrecht en Eindhoven Deze coordinaten kunnen we gebruiken met de Open Source Routing Machine (OSRM) API, die net iets anders is dan Nominatim en zijn eigen URL heeft <code>routing_url</code>. Ook maken we gebruik van de library <code>gepaf</code>, wat een encoder is om coordinated the vertalen naar Google’s Encoded Polyline Format. Helaas kan de API van OSRM niet heel vaak worden aangeroepen, hiervoor moet je de us oppassen.</p>
+<p>We printen de afstand af tussen de locaties</p>
+<pre class="r"><code>GetCarRoute &lt;- function(encpolied_position) {
+  url &lt;- paste0(routing_url,encpolied_position,&quot;)&quot;)
+  system.time({
+    d &lt;- fromJSON(url)
+  })
+  return(d)
+}
+
+
+location_utrecht &lt;- LocationToCoordinates(&quot;Utrecht&quot;)
+location_eindhoven &lt;- LocationToCoordinates(&quot;Eindhoven&quot;)
+
+coords &lt;- data.frame(lat = c(location_utrecht[1,1], location_eindhoven[1,1]),
+                     lon = c(location_utrecht[1,2], location_eindhoven[1,2]))
+result &lt;- GetCarRoute(encodePolyline(coords))
+print(result[[&quot;routes&quot;]][[&quot;distance&quot;]])</code></pre>
+<pre><code>## [1] 88695.5</code></pre>
+<div id="het-in-kaart-brengen-van-de-route" class="section level3">
+<h3>Het in kaart brengen van de route</h3>
+<p>Het resultaat vanuit OSRM, bevat de data die de essentiele punten bevat voor het maken van een route tussen Utrecht en Eindhoven. Met de library <code>leaflet</code> kunnen we dit weergeven.</p>
+<pre class="r"><code>route_df &lt;- decodePolyline(result[[&quot;routes&quot;]][[&quot;geometry&quot;]])
+
+leaflet(route_df) %&gt;% 
+  addTiles() %&gt;%
+  addProviderTiles(providers$CartoDB.Positron) %&gt;%
+  addCircles(lng = ~lon, lat = ~lat, weight = 2, fillOpacity = 0.5,
+             radius = 10)</code></pre>
+<div id="htmlwidget-1" style="width:672px;height:480px;" class="leaflet html-widget"></div>
+<script type="application/json" data-for="htmlwidget-1">{"x":{"options":{"crs":{"crsClass":"L.CRS.EPSG3857","code":null,"proj4def":null,"projectedBounds":null,"options":{}}},"calls":[{"method":"addTiles","args":["//{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",null,null,{"minZoom":0,"maxZoom":18,"tileSize":256,"subdomains":"abc","errorTileUrl":"","tms":false,"noWrap":false,"zoomOffset":0,"zoomReverse":false,"opacity":1,"zIndex":1,"detectRetina":false,"attribution":"&copy; <a href=\"http://openstreetmap.org\">OpenStreetMap<\/a> contributors, <a href=\"http://creativecommons.org/licenses/by-sa/2.0/\">CC-BY-SA<\/a>"}]},{"method":"addProviderTiles","args":["CartoDB.Positron",null,null,{"errorTileUrl":"","noWrap":false,"detectRetina":false}]},{"method":"addCircles","args":[[52.08108,52.07848,52.0562,52.05046,51.97672,51.93346,51.82657,51.77174,51.70483,51.67933,51.66298,51.61492,51.5863,51.55641,51.4929,51.481,51.45986,51.44085,51.44858],[5.1278,5.14181,5.12058,5.14311,5.09986,5.15971,5.25713,5.26154,5.34923,5.34535,5.30262,5.31789,5.35361,5.35993,5.42865,5.40305,5.40848,5.44967,5.45017],10,null,null,{"interactive":true,"className":"","stroke":true,"color":"#03F","weight":2,"opacity":0.5,"fill":true,"fillColor":"#03F","fillOpacity":0.5},null,null,null,{"interactive":false,"permanent":false,"direction":"auto","opacity":1,"offset":[0,0],"textsize":"10px","textOnly":false,"className":"","sticky":true},null,null]}],"limits":{"lat":[51.44085,52.08108],"lng":[5.09986,5.45017]}},"evals":[],"jsHooks":[]}</script>
+</div>
+</div>
+</div>
