@@ -9,3 +9,5 @@ public/
 *.Rproj
 
 test_scripts/
+
+.RData

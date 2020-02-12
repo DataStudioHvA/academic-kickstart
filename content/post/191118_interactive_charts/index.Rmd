@@ -21,10 +21,14 @@ output: pdf_document
 
 ---
 #Introduction
+
 In dit korte tech report laten we zien hoe je interactieve charts kan plaatsen in je post. We doen dit door gebruik te maken van de `Shiny` package in R, deze kan onlline woren gezet en dan in de blogpost worden weergegeven. Dit kan via https://www.shinyapps.io/, and dit worden naar deze website verzonden via de package, rsconnect. Een andere mogelijkheid voor het maken van interatieve charts is de package `Plotly`, het nadeel hiervaan is dat je er alleen static data mee kan weergeven. `Shiny` heeft het voordeel dat je ook nog het data kan manipuleren.
+
+## Plotly
 
 Hier is een voorbeeld te zien met de package `Plotly`.
 ```{r message=FALSE, warning=FALSE}
+# 
 library(plotly)
 
 d <- diamonds[sample(nrow(diamonds), 1000), ]
@@ -37,11 +41,15 @@ p <- plot_ly(
 p
 ```
 
-
+## Shiny
 
 Voor deze post maken we gebruik van [Shiny example: Diamonds Explorer](https://gist.github.com/jcheng5/3239667). De app is opgezet met [2 verschillende bestanden](https://shiny.rstudio.com/articles/two-file.html), het eerste bestand is (ui.R) wat de code bevat om de interface te defineeren. Het tweede bestand is (server.R), wat de code bevat om de juistte data te serveren naar de interface. Het scheiden van de code geeft meer overzicht.
 
 Hieronder staat de `Shiny` applicatie die gehost staat op https://www.shinyapps.io/.
 
-<iframe frameborder="no"  src="https://hva-diego.shinyapps.io/shinyapps" style="overflow:hidden;position:relative;width:100%;height:1080px;flex-grow: 1;"> </iframe>
+Je kunt het alsvolgt in je tech report plaatsen. Dit doe je direct in de tech report, zonder de `#`. Afhankelijk van jou Shiny dashboard, zou je je styling moeten aanpassen.
+```{r}
+# <iframe frameborder="no"  src="https://hva-diego.shinyapps.io/shinyapps" style="overflow:hidden;position:relative;width:100%;height:1080px;flex-grow: 1;"> </iframe>
+```
 
+<iframe frameborder="no"  src="https://hva-diego.shinyapps.io/shinyapps" style="overflow:hidden;position:relative;width:100%;height:1080px;flex-grow: 1;"> </iframe>
