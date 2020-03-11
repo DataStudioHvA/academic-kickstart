@@ -1,5 +1,5 @@
 ---
-title: 'How to: Toevoegen van rshiny dashboards aan blogposts'
+title: 'How to: Toevoegen van rshiny dashboards aan je tech report'
 author: Diego Staphorst
 date: '2019-11-18'
 slug: 191118_interactive_charts
