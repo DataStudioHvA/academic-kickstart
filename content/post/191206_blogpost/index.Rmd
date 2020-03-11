@@ -1,5 +1,5 @@
 ---
-title: 'How to: Het maken van een blogpost'
+title: 'How to: Het maken van een tech report'
 author: Diego Staphorst
 date: '2019-12-06'
 slug: 191206_blogpost
