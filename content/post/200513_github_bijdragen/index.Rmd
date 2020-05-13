@@ -1,0 +1,13 @@
+---
+title: 'How to: Bijdragen via github'
+author: Diego Staphorst
+date: '2020-05-13'
+slug: github_bijdragen
+categories:
+  - github
+tags:
+  - tech report
+  - demon
+---
+
+## How to: Bijdragen via github
