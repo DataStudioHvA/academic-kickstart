@@ -31,56 +31,51 @@ params:
 <!-- https://alison.rbind.io/post/2019-02-21-hugo-page-bundles/ -->
 <div id="het-schrijven-van-tech-reports" class="section level1">
 <h1>Het schrijven van tech reports</h1>
-<p>In deze markdown ga ik verschillende methoden beschrijven hoe er tech reports kunnen worden geplaats op de website. Dit gebeurt voornamelijk met Rmarkdown, dit is een bestands formaat, waarmee R code met zijn output kan wornen weergegeven. Zo kunnen bijvoorbeeld stukken code ook worden meegenomen in de uiteindelijke output van het document. Het is ook mogelijk om jupyter notebook als tech reports aan te maken, dit zal in een update worden beschreven.</p>
+<p>In deze techreport ga ik verschillende methoden beschrijven hoe jij zelf je tech report kunt worden plaatsen op de website. Dit gebeurt voornamelijk met Rmarkdown, dit is een bestands formaat, waarmee R code met zijn output kan worden weergegeven. Zo kunnen bijvoorbeeld stukken code ook worden meegenomen in de uiteindelijke output van het document.</p>
+<div id="de-repository-op-je-computer-krijgen" class="section level2">
+<h2>De repository op je computer krijgen</h2>
+<p>Om de website op je computer te krijgen, moeten we de repository openen in RStudio. Hiervoor maken we gebruik van verschillende tools voornamelijk: R, Rstudio, Git en Github. Zorg dus dat je deze tools op je computer hebt staan voordat je deze stappen gaat volgen. Een van de methoden om git op je computer te krijgen is door het installeren van <a href="https://desktop.github.com/">Github desktop</a>. Maak ook direct een account aan voor github als je dat nog niet hebt! Meer informatie kan je vinden in de links hieronder.</p>
+<ul>
+<li><a href="https://github.com">Github.com</a></li>
+<li><a href="https://guides.github.com/">Github guides</a></li>
+</ul>
+<p>In het volgende filmpje wordt uigelegd hoe je de website draaiende krijgt op jouw computer. Let op, het installeren van een aantal packages kan langer duren dan dat het filmpje aangeeft!</p>
+<p><a href="http://www.youtube.com/watch?v=UM0jxQ_H-DQ" title="Video met uitleg hoe je de tech report website op je computer krijgt"><img src="http://img.youtube.com/vi/UM0jxQ_H-DQ/0.jpg" /></a></p>
+</div>
 <div id="een-nieuwe-post-maken" class="section level2">
 <h2>Een nieuwe post maken</h2>
-<p>Het maken van een tech report kan heel gemakkelijk, in de volgende serie plaatjes wordt dit weergegeven.</p>
+<p>Het volgende filmpje geeft uitleg hoe je een blog post maakt en de stappen die nodig zijn voor het publiceren van de tech report op de website.</p>
+<p><a href="http://www.youtube.com/watch?v=vzSdQOhnZdk" title="Video met uitleg over het bijdragen aan de website in de vorm van een tech report"><img src="http://img.youtube.com/vi/vzSdQOhnZdk/0.jpg" /></a></p>
 <p>De volgende afbeelding is een screenshot van RStudio, dus we nemen hierbij aan dat je <a href="https://www.r-project.org">R</a> en <a href="https://www.rstudio.com">Rstudio</a> geinstalleerd hebt.</p>
 <p>Installeer blogdown, door de volgende regel in je console te plakken.</p>
 <pre class="r"><code>## Install from CRAN
 install.packages(&quot;blogdown&quot;)</code></pre>
 <p>Je moet ook de static website generator Hugo installeren, plak de volgende regel in de console:</p>
 <pre class="r"><code>blogdown::install_hugo()</code></pre>
-<div id="openen-nieuwe-post" class="section level3">
-<h3>Openen nieuwe post</h3>
-<div class="figure">
-<img src="../static/nieuwe_post1.png" alt="Figure 1: aanmaken" />
-<p class="caption">Figure 1: aanmaken</p>
-</div>
+<div id="aanmaken-van-een-nieuwe-post" class="section level3">
+<h3>Aanmaken van een nieuwe post</h3>
+<p><img src="../static/nieuwe_post1.png" /></p>
 </div>
 <div id="gegevens-instellen" class="section level3">
 <h3>Gegevens instellen</h3>
 <p>In de volgende afbeelding zie je hoe jij je specifieke gegevens moet instellen als je een nieuwe post wilt genereren. Volg de stappen die in de afbeelding staan weergeven</p>
 <div class="figure">
-<img src="../static/nieuwe_post2.png" alt="test" />
-<p class="caption">test</p>
+<img src="../static/nieuwe_post2.png" alt="Invoeren gegevens" />
+<p class="caption">Invoeren gegevens</p>
 </div>
 </div>
-<div id="je-post-op-github-plaatsen-via-de-website" class="section level3">
-<h3>Je post op github plaatsen via de website</h3>
-<p>Door een nieuwe folder aan te maken via de github website zou de workflow simpeler kunnen zijn. Met deze methode zou je niet de gehele repository van de website hoeven te downloaden. Via RStudio zou je dan je tech report kunnen schrijven, test en editten totdat het een rapport is die publiceerbaar is.</p>
-<p><img src="../static/nieuwe_post.png" alt="test" />
-Hierna kan je beginnen met het typen van de blogpost.</p>
+<div id="schrijven-van-een-blogpost" class="section level3">
+<h3>Schrijven van een blogpost</h3>
+<p>Er is nu een nieuwe index.Rmd bestand in de folder, voor de blogpost die jij hebt aangemaakt. Hierin kan de tekst voor jouw blogpost worden geschreven</p>
 </div>
-<div id="je-post-op-github-plaatsen-via-gitkraken" class="section level3">
-<h3>Je post op github plaatsen via gitkraken</h3>
-<p>Door gebruik te maken van RStudio en jouw favoriete method om connectie te maken met deze github repository, zou je je workflow kunnen bevorderen. Hieronder staat een korte beschrijving hoe dat in zijn werk zou gaan.</p>
-<p>Er zijn verschillende manieren om te helpen aan de website, in deze blogpost focussen we ons op het maken van blogposts. Een voorwaarde is dat je een github account hebt, een basisbegip van git en github hebt. Hieronder staan een aantal resources, om je kennis qua git en github op te frissen!</p>
+<div id="het-maken-van-een-pull-request" class="section level3">
+<h3>Het maken van een pull request</h3>
 <ul>
-<li><a href="https://github.com">Github.com</a></li>
-<li><a href="https://guides.github.com/">Github guides</a></li>
+<li>Maak een branch van de master</li>
+<li>Stage en commit al jou veranderingen</li>
+<li>Push jouw branch naar github</li>
+<li>Vraag een pull request aan</li>
 </ul>
-<p>Git kan op verschillende manieren worden gebruikt, zo kan je dat doen via de terminal, maar ook via een Graphical User Interface (GUI). Zelf gebruik ik <a href="https://www.gitkraken.com/">GitKraken</a>, het geeft een duidelijk overzicht wat er gebeurt in de repository. Zij bieden ook trainingen aan die de flow van github intuitiever maken, <a href="https://www.gitkraken.com/learn-git">Learn Git with Gitkraken</a>.</p>
-<p>Nu zou je je eerste bijdragen moeten kunnen maken aan dit project! Laten we beginnen hiermee, door deze <a href="https://www.youtube.com/watch?v=j_qpzND5yAg">video</a> te bekijken. Een samenvatting van de stappen staan hieronder:</p>
-<ol style="list-style-type: decimal">
-<li>Vork de repository en kloon hem naar je desktop</li>
-<li>Maak een branch voor je blogpost</li>
-<li>Pas de bestanden aan/Maak je post (hoe dit moet staat hierboven)</li>
-<li>Commit naar veranderingen naar je gemaakte branch</li>
-<li>Maak een nieuwe pull request</li>
-<li>Wacht op review van je pull request</li>
-</ol>
-<p>Deze stappen staan uitvoerig beschreven in de volgende link <a href="https://akrabat.com/the-beginners-guide-to-contributing-to-a-github-project/">beginners guide to contributing</a>.</p>
 </div>
 </div>
 </div>
