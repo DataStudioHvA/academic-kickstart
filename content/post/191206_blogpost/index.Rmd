@@ -39,13 +39,13 @@ Om de website op je computer te krijgen, moeten we de repository openen in RStud
 
 In het volgende filmpje wordt uigelegd hoe je de website draaiende krijgt op jouw computer. Let op, het installeren van een aantal packages kan langer duren dan dat het filmpje aangeeft!
 
-[![](http://img.youtube.com/vi/UM0jxQ_H-DQ/0.jpg)](http://www.youtube.com/watch?v=UM0jxQ_H-DQ "Video met uitleg hoe je de tech report website op je computer krijgt")
+[![](https://img.youtube.com/vi/UM0jxQ_H-DQ/0.jpg)](https://www.youtube.com/watch?v=UM0jxQ_H-DQ "Video met uitleg hoe je de tech report website op je computer krijgt")
 
 
 ## Een nieuwe post maken
 Het volgende filmpje geeft uitleg hoe je een blog post maakt en de stappen die nodig zijn voor het publiceren van de tech report op de website.
 
-[![](http://img.youtube.com/vi/vzSdQOhnZdk/0.jpg)](http://www.youtube.com/watch?v=vzSdQOhnZdk "Video met uitleg over het bijdragen aan de website in de vorm van een tech report")
+[![](https://img.youtube.com/vi/vzSdQOhnZdk/0.jpg)](https://www.youtube.com/watch?v=vzSdQOhnZdk "Video met uitleg over het bijdragen aan de website in de vorm van een tech report")
 
 De volgende afbeelding is een screenshot van RStudio, dus we nemen hierbij aan dat je [R](https://www.r-project.org) en [Rstudio](https://www.rstudio.com) geinstalleerd hebt.
 
