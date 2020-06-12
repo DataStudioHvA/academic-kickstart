@@ -14,20 +14,14 @@ In de toekomst zal er ook een beschrijving worden gepubliceerd in de vorm van ee
 [Zie hier hoe je tech reports kan toevoegen!](https://github.com/DataStudioHvA/blog_tech_reports/tree/master/content/post)
 
 ## Folder structuur
-    ├─ .forestry          # CMS (geimplementeerd, maar niet verder getest)
     ├─ .github            # Github templates e.g. issue_template
     ├─ R                  # Script die worden gerund voor renderen van de website
     │  └─ build.R         # Build script, roept submodule van git aan
     ├─ config             # Configuratie Academic thema
     ├─ content            # Content folder voor verschillende doeleinden
-    │  ├─ authors
-    │  ├─ courses
-    │  ├─ home
+    │  ├─ authors         # Map met auteurs van techreports
+    │  ├─ home            # Content weergegeven op de startpagina
     │  ├─ post            # Hierin komen de tech reports
-    │  ├─ project
-    │  ├─ publication
-    │  ├─ slides
-    │  ├─ talk
     ├─ data               # Overschreven theme aanpassingen voor de website 
     ├─ layouts            # Overschreven HTML partials voor de website
     ├─ resources          # Resources folder voor gebruikte tools (HUGO)
