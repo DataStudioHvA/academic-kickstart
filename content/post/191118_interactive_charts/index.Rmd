@@ -1,5 +1,5 @@
 ---
-title: 'How to: Toevoegen van rshiny dashboards aan je tech report'
+title: 'How to: Toevoegen van shiny dashboards en interactieve charts aan je tech report'
 author: Diego Staphorst
 date: '2019-11-18'
 slug: 191118_interactive_charts
@@ -22,7 +22,7 @@ output: pdf_document
 ---
 #Introduction
 
-In dit korte tech report laten we zien hoe je interactieve charts kan plaatsen in je post. We doen dit door gebruik te maken van de `Shiny` package in R, deze kan onlline woren gezet en dan in de blogpost worden weergegeven. Dit kan via https://www.shinyapps.io/, and dit worden naar deze website verzonden via de package, rsconnect. Een andere mogelijkheid voor het maken van interatieve charts is de package `Plotly`, het nadeel hiervaan is dat je er alleen static data mee kan weergeven. `Shiny` heeft het voordeel dat je ook nog het data kan manipuleren.
+In dit korte tech report laten we zien hoe je interactieve charts kan plaatsen in je techreport We doen dit door gebruik te maken van de `Plotly` & `Shiny` package in R, deze kan online worden gezet en  in de blogpost worden geplaatst Dit kan via https://www.shinyapps.io/, en dit kan worden verzonden via de package, rsconnect. Een andere mogelijkheid voor het maken van interatieve charts is de package `Plotly`, het nadeel hiervaan is dat je er alleen static data mee kan weergeven. `Shiny` heeft het voordeel dat je ook nog het data kan manipuleren.
 
 ## Plotly
 
