@@ -20,7 +20,23 @@ image:
 projects: []
 ---
 
-# Hoe maak je een video?
-...
+Deze techreport beschrijft de video hieronder:
+[![](https://img.youtube.com/vi/c7wJA1JLgYU/0.jpg)](https://www.youtube.com/watch?v=c7wJA1JLgYU "Hoe wij een video maken")Hierin legt Diego uit hoe je een video maakt voor je techreport en dit kan publiceren door middel van een pull request aan te vragen aan de github supervisors. 
 
-<div style="position: relative; padding-bottom: 56.25%; height: 0;"><iframe src="https://www.loom.com/embed/f0fa8d2f0aaa452685e674d951f19f7f" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;"></iframe></div>
+## Storyboard
+Voor het in kaart brengen van een verhaallijn voor jouw video, zodat je het met anderen kan delen, maken wij een storyboard. De brengt jou document die gemakkelijk te delen is met anderen zodat je daarop feedback kan krijgen. In de video wordt er gebruik gemaakt van powerpoint, door de opdeling van de slides is dit een zeer handige methode voor het beschrijven van verschillende frames. Ook is het software dat toegankelijk is voor studenten en onderzoekers, door de beschikbaarheid ervan en gebruiksgemak.
+
+## Loom
+Zelf heb ik voornameljk kennisclips gemaakt door mijn scherm op te nemen (screenrecording), hiervoor heb ik gebruik gemaakt van [Open Broadcaster Software (OBS)](https://obsproject.com/) en [Loom](https://www.loom.com/). Loom is zeer toegankelijk, het gratis met jouw studenten account en het beschikt over simpele video editting features in de browser. Ook is Loom zeer geschikt voor het publiceren van je videos, doordat het direct deze mogelijkheden heeft, zoals je kunt zien in de video.
+
+Ook heb ik gebruik gemaakt van OBS, dit bracht meer mogleijkheden met zich mee, maar na nader inzien was het toch makkelijker geweest met Loom. Dit komt voornamelijk doordat ik andere tools daarna nog nodig had voor het editten, zoals Adobe Premiere Pro. Als je met deze tools overweg kunt raad ik dat zeker aan, maar om gemakkelijk te houden raad ik toch Loom aan.
+
+## Embedden van de video in jouw tech report
+In de video heb je kunnen zien hoe ik doormiddel van de geproduceerde video in Loom, deze in mijn tech report heb kunnen krijgen. Ik verwijs je door naar de [blogpost over techreports](https://datastudio.netlify.app/post/191206_blogpost/), hoe jij de website op je computer krijgt en wat voor instellingen je moet invoegen voor het maken van jouw techreport.
+
+Het embedden van jouw video doe je door gebruik te maken van de share knop op Loom. Als je een ander platform hebt gebruikt zal het embedded op een manier gaan. Plaats de broncode voor het embedden in je techreport, beschrijf je markdown, test of je techreport wordt gerenderd en maak een pull request. 
+
+## Tools
+- [Loom](https://www.loom.com/) - Screen recorder
+- [Blog Repository](https://github.com/DataStudioHvA/blog_tech_reports) - Techreport repo op github
+- [Rstudio](https://rstudio.com/) - Het maken van techreports en connectie met github
