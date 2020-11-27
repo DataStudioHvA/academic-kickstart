@@ -1,0 +1,21 @@
+---
+title: 'Python test site'
+author: Pieter Bons
+date: '2020-11-01'
+slug: python
+categories:
+  - case study
+tags:
+  - python
+  - test
+---
+
+## TITEL
+**Voorbeeldje in Python**
+
+```{python}
+import numpy as np
+list = np.array([1,2,3])
+print(f"{list}")
+```
+
